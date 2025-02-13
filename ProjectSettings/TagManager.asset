@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - gamemanager
+  - canvas
   layers:
   - Default
   - TransparentFX

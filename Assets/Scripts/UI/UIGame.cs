@@ -3,19 +3,34 @@ using UnityEngine;
 public class UIGame : MonoBehaviour
 {
     [SerializeField]
-    GameObject SelectLevel;
+    GameObject selectLevel;
     [SerializeField]
-    GameObject GameScreen;
+    GameObject easyScreen;
     [SerializeField]
-    GameObject Defeat;
+    GameObject moderateScreen;
     [SerializeField]
-    GameObject PauseMenu;
+    GameObject DifficultScreen;
     [SerializeField]
-    GameObject ContinueNextLevel;
+    GameObject defeat;
+    [SerializeField]
+    GameObject pauseMenu;
+    [SerializeField]
+    GameObject continueNextLevel;
 
 
-    public void LevelSelected(){
-
+    public void LevelSelected(int level){
+        selectLevel.SetActive(false);
+        switch(level){
+            case 1:
+            easyScreen.SetActive(true);
+            break;
+            case 2:
+            moderateScreen.SetActive(true);
+            break ;
+            case 3:
+            DifficultScreen.SetActive(true);
+            break;
+        }
     }
 
     public void PlayerWon(){
