@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class UIGame : MonoBehaviour
@@ -16,10 +17,17 @@ public class UIGame : MonoBehaviour
     GameObject pauseMenu;
     [SerializeField]
     GameObject continueNextLevel;
+    [SerializeField]
+    GameObject uiGeneral;
+    [SerializeField]
+    TextMeshProUGUI score;
+    [SerializeField]
+    TextMeshProUGUI maxScore;
 
 
     public void LevelSelected(int level){
         selectLevel.SetActive(false);
+        uiGeneral.SetActive(true);
         switch(level){
             case 1:
             easyScreen.SetActive(true);
@@ -34,7 +42,7 @@ public class UIGame : MonoBehaviour
     }
 
     public void PlayerWon(){
-
+        continueNextLevel.SetActive(true);
     }
 
     public void PlayerLost(){
@@ -46,7 +54,11 @@ public class UIGame : MonoBehaviour
     }
 
     public void PlayerContinued(){
-        
+        continueNextLevel.SetActive(false);
+    }
+
+    public void SetScoreText(int score){
+        this.score.text = $"Score: {score}";
     }
 
 

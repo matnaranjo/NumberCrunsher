@@ -7,7 +7,7 @@ public class AudioController : MonoBehaviour
 
     AudioClip[] audioFiles;
 
-    public void PlayAudio(){
+    public void PlayAudio(int track){
 
     }
 }

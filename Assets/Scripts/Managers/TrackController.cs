@@ -11,16 +11,26 @@ public class TrackController : MonoBehaviour
     TextMeshProUGUI hpText;
     TextMeshProUGUI[] textObjects;
     TMP_InputField userGuess;
-    Button submitButton;
+    public TMP_InputField UserGuess{
+        get{ return userGuess; }
+    }
     AudioController audios;
     GameManager gm;
-    int hp;
-    int range;
+    int hp=0;
+    public int HP{
+        get{ return hp; }
+        set{ hp = value; }
+    }
+    int range=0;
+    [SerializeField]
     int numToGuess;
 
+    [SerializeField]
+    int id;
 
 
-    void Start(){
+
+    void OnEnable(){
         gm = GameObject.FindGameObjectWithTag("gamemanager").GetComponent<GameManager>();
         textObjects = gameObject.transform.GetComponentsInChildren<TextMeshProUGUI>();
         foreach (TextMeshProUGUI textObject in textObjects)
@@ -30,19 +40,29 @@ public class TrackController : MonoBehaviour
             hpText = textObject.name == "Hp" ? textObject : hpText;
         }
         userGuess = gameObject.transform.GetComponentInChildren<TMP_InputField>();
-        submitButton = gameObject.transform.GetComponentInChildren<Button>();
-        submitButton.onClick.AddListener(HandleInput);
         InitializeValues();
     }
 
-    private void InitializeValues(){
+    public void InitializeValues(){
         hp = gm.HP;
-        range = gm.NumberLimit;
+        range = gm.CurrentNumberLimit;
+        Debug.Log(range);
+        numToGuess = NumGenerator.GenerateNumber(range);
+        if (range!=10 && range != 100 && range != 1000){
+            hp = gm.SetHPS(id);
+        }
+        hpText.text = hp.ToString();
+    }
+
+    public void LevelUp(){
+        hp += gm.HP;
+        range += gm.NumberLimit;
+        gm.CurrentNumberLimit = range;
         numToGuess = NumGenerator.GenerateNumber(range);
         hpText.text = hp.ToString();
     }
 
-    private void HandleInput(){
+    public void HandleInput(){
         int userInputNumber;
         if (Int32.TryParse(userGuess.text, out userInputNumber)){
             HandleText(userInputNumber);
@@ -56,6 +76,7 @@ public class TrackController : MonoBehaviour
             guesses.text +=$"<color=green>{userInputNumber}\n";
             guessResult.text = "<color=green>O";
             DeactivateTrack();
+            gm.CheckForWin();
         }
         //bigger
         else if(numToGuess>userInputNumber){
@@ -80,8 +101,13 @@ public class TrackController : MonoBehaviour
     }
 
     private void DeactivateTrack(){
-        submitButton.interactable = false;
         userGuess.interactable = false;
+    }
+
+    public void CleanTrack(){
+        guesses.text = "";
+        userGuess.interactable = true;
+        guessResult.text = "";
     }
 
     
