@@ -16,6 +16,7 @@ public class UIGame : MonoBehaviour
     [SerializeField]
     GameObject pauseMenu;
     [SerializeField]
+    
     GameObject continueNextLevel;
     [SerializeField]
     GameObject uiGeneral;
@@ -23,6 +24,8 @@ public class UIGame : MonoBehaviour
     TextMeshProUGUI score;
     [SerializeField]
     TextMeshProUGUI maxScore;
+    [SerializeField]
+    TextMeshProUGUI reset;
 
 
     public void LevelSelected(int level){
@@ -50,16 +53,18 @@ public class UIGame : MonoBehaviour
     }
 
     public void PlayerPaused(){
+        pauseMenu.SetActive(true);
 
     }
-
+   
     public void PlayerContinued(){
         continueNextLevel.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     public void SetScoreText(int score){
         this.score.text = $"Score: {score}";
     }
 
-
+   
 }
