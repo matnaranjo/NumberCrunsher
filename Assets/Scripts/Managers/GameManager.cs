@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("maxscore", 0);
+        uiController.SetMaxScoreText(highScore);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -73,7 +75,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void CheckForDeath(){
-
+        SaveHighScore();
+        uiController.PlayerLost();
     }
 
     public void CheckForWin(){
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
             }
         }
         SetScore();
+        SaveHighScore();
         uiController.PlayerWon();
     }
 
@@ -121,7 +125,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void SaveHighScore(){
-        
+        if (score > highScore){
+            PlayerPrefs.SetInt("maxscore", score);
+            uiController.SetMaxScoreText(score);
+        }
     }
 
     private void SaveInfo(){

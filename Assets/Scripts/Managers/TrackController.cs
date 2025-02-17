@@ -97,6 +97,7 @@ public class TrackController : MonoBehaviour
         hpText.text = hp.ToString();
         if (hp==0){
             DeactivateTrack();
+            gm.CheckForDeath();
         }
     }
 

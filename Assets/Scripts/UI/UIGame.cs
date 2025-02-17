@@ -16,7 +16,6 @@ public class UIGame : MonoBehaviour
     [SerializeField]
     GameObject pauseMenu;
     [SerializeField]
-    
     GameObject continueNextLevel;
     [SerializeField]
     GameObject uiGeneral;
@@ -24,8 +23,6 @@ public class UIGame : MonoBehaviour
     TextMeshProUGUI score;
     [SerializeField]
     TextMeshProUGUI maxScore;
-    [SerializeField]
-    TextMeshProUGUI reset;
 
 
     public void LevelSelected(int level){
@@ -49,22 +46,41 @@ public class UIGame : MonoBehaviour
     }
 
     public void PlayerLost(){
+        TurnOFOnGame();
 
+        defeat.SetActive(true);
+    }
+
+    public void PlayerReset(){
+        TurnOFOnGame();
+        uiGeneral.SetActive(false);
+        pauseMenu.SetActive(false);
+        selectLevel.SetActive(true);
     }
 
     public void PlayerPaused(){
         pauseMenu.SetActive(true);
-
     }
-   
+    public void PlayerUnpaused(){
+        pauseMenu.SetActive(false);
+    }
+
     public void PlayerContinued(){
         continueNextLevel.SetActive(false);
-        pauseMenu.SetActive(false);
     }
 
     public void SetScoreText(int score){
         this.score.text = $"Score: {score}";
     }
 
-   
+    public void SetMaxScoreText(int maxScore){
+        this.maxScore.text = $"Max score: {maxScore}";
+    }
+
+    private void TurnOFOnGame(){
+        bool onOff = false;
+        easyScreen.SetActive(onOff);
+        moderateScreen.SetActive(onOff);
+        DifficultScreen.SetActive(onOff);
+    }
 }
