@@ -83,4 +83,14 @@ public class UIGame : MonoBehaviour
         moderateScreen.SetActive(onOff);
         DifficultScreen.SetActive(onOff);
     }
-}
+
+    public void PlayerExit() {
+
+          // Quit the game
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;  // Stop play mode
+        #else
+        Application.Quit();  // Quit the game
+        #endif
+    }
+}   
