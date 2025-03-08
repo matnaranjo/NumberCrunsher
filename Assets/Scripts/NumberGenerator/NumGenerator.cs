@@ -34,7 +34,7 @@ public class NumGenerator : MonoBehaviour
                 multipleModes++;
             }
         }
-        //If the mode is repoeated, generate list again
+        //If the mode is repeated, generate list again
         if (multipleModes>1){
             return GenerateNumber(range);
         }
