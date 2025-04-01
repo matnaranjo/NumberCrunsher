@@ -12,6 +12,10 @@ public class SelectName : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // DEBUGGING CODE
+        PlayerPrefs.DeleteAll();
+        // DEBUGGING CODE
+
         userName = PlayerPrefs.GetString("name", "");
         if (userName == ""){
             uiController.UserHasNoName();
@@ -26,6 +30,6 @@ public class SelectName : MonoBehaviour
         PlayerPrefs.SetString("name", txtName.text);
         userName = PlayerPrefs.GetString("name", "");
         uiController.GetNameAndDisplay(userName);
-        uiController.UserHasName();
+        uiController.UserHasNameInstantaneously();
     }
 }
