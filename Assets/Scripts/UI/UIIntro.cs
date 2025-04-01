@@ -16,7 +16,7 @@ public class UIIntro : MonoBehaviour
     [SerializeField] TMP_InputField name;
     [SerializeField] Animator introMusic, fadeOut;
     [SerializeField] AudioSource evilLaugh;
-
+    [SerializeField] AudioSource buttonClick; 
 
     private void Update()
     {
@@ -79,5 +79,10 @@ public class UIIntro : MonoBehaviour
         introMusic.Play("MusicOff");
         fadeOut.Play("fadeout");
         evilLaugh.Play();
+    }
+
+    public void ClickButton()
+    {
+        buttonClick.Play();
     }
 }

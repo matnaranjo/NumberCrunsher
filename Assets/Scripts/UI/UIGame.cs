@@ -1,5 +1,7 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class UIGame : MonoBehaviour
 {
@@ -23,23 +25,33 @@ public class UIGame : MonoBehaviour
     TextMeshProUGUI score;
     [SerializeField]
     TextMeshProUGUI maxScore;
+    [SerializeField] AudioSource buttonClick;
 
-
-    public void LevelSelected(int level){
+    public void LevelSelected(int level)
+    { 
         selectLevel.SetActive(false);
+        StartCoroutine(LevelDelay(level));
+    }
+
+    private IEnumerator LevelDelay(int level)
+    {
+        yield return new WaitForSeconds(5f);
+
         uiGeneral.SetActive(true);
-        switch(level){
+        switch (level)
+        {
             case 1:
-            easyScreen.SetActive(true);
-            break;
+                easyScreen.SetActive(true);
+                break;
             case 2:
-            moderateScreen.SetActive(true);
-            break ;
+                moderateScreen.SetActive(true);
+                break;
             case 3:
-            DifficultScreen.SetActive(true);
-            break;
+                DifficultScreen.SetActive(true);
+                break;
         }
     }
+
 
     public void PlayerWon(){
         continueNextLevel.SetActive(true);
@@ -92,5 +104,10 @@ public class UIGame : MonoBehaviour
         #else
         Application.Quit();  // Quit the game
         #endif
+    }
+
+    public void ClickButton()
+    {
+        buttonClick.Play();
     }
 }   
