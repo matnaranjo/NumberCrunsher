@@ -48,8 +48,10 @@ public class TrackController : MonoBehaviour
         range = gm.CurrentNumberLimit;
         Debug.Log(range);
         numToGuess = NumGenerator.GenerateNumber(range);
-        if (range!=10 && range != 100 && range != 1000){
+        if (range != 10 && range != 100 && range != 1000)
+        {
             hp = gm.SetHPS(id);
+            Debug.Log(hp);
         }
         hpText.text = hp.ToString();
     }

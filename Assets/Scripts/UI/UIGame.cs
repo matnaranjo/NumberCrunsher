@@ -26,10 +26,12 @@ public class UIGame : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI maxScore;
     [SerializeField] AudioSource buttonClick;
+    [SerializeField] Animator genieAndBall;
 
     public void LevelSelected(int level)
     { 
         selectLevel.SetActive(false);
+        genieAndBall.Play("GenioGetIn");
         StartCoroutine(LevelDelay(level));
     }
 

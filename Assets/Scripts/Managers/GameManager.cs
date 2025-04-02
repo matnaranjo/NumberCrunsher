@@ -131,43 +131,72 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SaveInfo(){
-        switch (hp){
+    private void SaveInfo()
+    {
+        switch (hp)
+        {
             case 5:
-            PlayerPrefs.SetInt("Dif",1);
-            break;
+                PlayerPrefs.SetInt("Dif", 1);
+                break;
             case 7:
-            PlayerPrefs.SetInt("Dif",2);
-            break;
+                PlayerPrefs.SetInt("Dif", 2);
+                break;
             case 11:
-            PlayerPrefs.SetInt("Dif",3);
-            break;
+                PlayerPrefs.SetInt("Dif", 3);
+                break;
         }
+
+        PlayerPrefs.SetInt("hp", hp);  // Make sure this is being saved correctly
+        PlayerPrefs.SetInt("limitIncrease", numberLimit);
+        PlayerPrefs.SetInt("limit", currentNumberLimit);
+        PlayerPrefs.SetInt("score", score);
 
         string hps = "";
         foreach (GameObject track in trackList)
         {
-            hps += track.GetComponent<TrackController>().HP.ToString()+" ";
+            hps += track.GetComponent<TrackController>().HP.ToString() + " ";
         }
-        PlayerPrefs.SetInt("hp", hp);
         PlayerPrefs.SetString("hps", hps);
-        PlayerPrefs.SetInt("limitIncrease", numberLimit);
-        PlayerPrefs.SetInt("limit", currentNumberLimit);
-        PlayerPrefs.SetInt("score", score);
     }
 
-    public void LoadLevel(){
-        hp = PlayerPrefs.GetInt("hp");
-        score =PlayerPrefs.GetInt("score");
+    public void LoadLevel()
+    {
+        // Load from PlayerPrefs first
+        hp = PlayerPrefs.GetInt("hp", 5);  // Default to 5 if not set
+        score = PlayerPrefs.GetInt("score");
         numberLimit = PlayerPrefs.GetInt("limitIncrease");
         currentNumberLimit = PlayerPrefs.GetInt("limit");
 
-        uiController.LevelSelected(PlayerPrefs.GetInt("Dif"));
+        // If PlayerPrefs doesn't have the correct value, set it based on difficulty
+        int difficulty = PlayerPrefs.GetInt("Dif");
+        switch (difficulty)
+        {
+            case 1:
+                hp = 5;
+                break;
+            case 2:
+                hp = 7;
+                break;
+            case 3:
+                hp = 11;
+                break;
+        }
+
+        // Set the level UI and score
+        uiController.LevelSelected(difficulty);
         uiController.SetScoreText(score);
+
+        // Pass the HP value to the tracks
+        foreach (GameObject track in trackList)
+        {
+            track.GetComponent<TrackController>().InitializeValues();  // This will now use the updated `gm.HP` value
+        }
     }
+
     public int SetHPS(int id){
         string hps = PlayerPrefs.GetString("hps");
         string trackHP="";
+
         foreach (char letter in hps)
         {
             if (letter!=' '){
