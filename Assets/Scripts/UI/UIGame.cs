@@ -27,9 +27,15 @@ public class UIGame : MonoBehaviour
     TextMeshProUGUI maxScore;
     [SerializeField] AudioSource buttonClick;
     [SerializeField] Animator genieAndBall;
+    [SerializeField] Animator genieMovement;
+    [SerializeField] Animator genie;
+    [SerializeField] Animator ball;
+    [SerializeField] AudioSource right;
+
+
 
     public void LevelSelected(int level)
-    { 
+    {
         selectLevel.SetActive(false);
         genieAndBall.Play("GenioGetIn");
         StartCoroutine(LevelDelay(level));
@@ -55,8 +61,16 @@ public class UIGame : MonoBehaviour
     }
 
 
-    public void PlayerWon(){
+    public void PlayerWon() {
         continueNextLevel.SetActive(true);
+        genieMovement.Play("GenitoHit");
+    }
+
+    public void PlayerGotAtLeastOneRight()
+    {
+        genie.Play("TurnGreen");
+        ball.Play("GetGreenBall");
+        right.Play();
     }
 
     public void PlayerLost(){

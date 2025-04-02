@@ -82,7 +82,8 @@ public class GameManager : MonoBehaviour
     public void CheckForWin(){
         foreach (GameObject track in trackList)
         {
-            if (track.GetComponent<TrackController>().UserGuess.interactable ==true){
+            if (track.GetComponent<TrackController>().UserGuess.interactable == true)
+            {
                 return;
             }
         }
@@ -217,4 +218,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayerGotItRight()
+    {
+        uiController.PlayerGotAtLeastOneRight();
+    }
 }

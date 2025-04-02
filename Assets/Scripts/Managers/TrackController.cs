@@ -11,6 +11,7 @@ public class TrackController : MonoBehaviour
     TextMeshProUGUI hpText;
     TextMeshProUGUI[] textObjects;
     TMP_InputField userGuess;
+
     public TMP_InputField UserGuess{
         get{ return userGuess; }
     }
@@ -64,9 +65,11 @@ public class TrackController : MonoBehaviour
         hpText.text = hp.ToString();
     }
 
-    public void HandleInput(){
+    public void HandleInput()
+    {
         int userInputNumber;
-        if (Int32.TryParse(userGuess.text, out userInputNumber)){
+        if (Int32.TryParse(userGuess.text, out userInputNumber))
+        {
             HandleText(userInputNumber);
         }
     }
@@ -78,6 +81,7 @@ public class TrackController : MonoBehaviour
             guesses.text +=$"<color=green>{userInputNumber}\n";
             guessResult.text = "<color=green>O";
             DeactivateTrack();
+            gm.PlayerGotItRight();
             gm.CheckForWin();
         }
         //bigger
@@ -114,4 +118,6 @@ public class TrackController : MonoBehaviour
     }
 
     
+    
+
 }
