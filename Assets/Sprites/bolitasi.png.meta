@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bolitasi_0: 459257938144935962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
