@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class TrackController : MonoBehaviour
 {
@@ -29,8 +30,6 @@ public class TrackController : MonoBehaviour
     [SerializeField]
     int id;
 
-
-
     void OnEnable(){
         gm = GameObject.FindGameObjectWithTag("gamemanager").GetComponent<GameManager>();
         textObjects = gameObject.transform.GetComponentsInChildren<TextMeshProUGUI>();
@@ -47,12 +46,10 @@ public class TrackController : MonoBehaviour
     public void InitializeValues(){
         hp = gm.HP;
         range = gm.CurrentNumberLimit;
-        Debug.Log(range);
         numToGuess = NumGenerator.GenerateNumber(range);
         if (range != 10 && range != 100 && range != 1000)
         {
             hp = gm.SetHPS(id);
-            Debug.Log(hp);
         }
         hpText.text = hp.ToString();
     }
@@ -76,25 +73,28 @@ public class TrackController : MonoBehaviour
 
     private void HandleText(int userInputNumber){
         userGuess.text = "";
-        //Equal
-        if (numToGuess == userInputNumber){
+
+        if (numToGuess > userInputNumber)
+        {
+            guesses.text += $"<color=red>{userInputNumber}\n";
+            guessResult.text = "<color=red>X ↑";
+            HandleHP();
+            gm.PlayerGotItWrong();
+        }
+        else if (numToGuess < userInputNumber)
+        {
+            guesses.text += $"<color=red>{userInputNumber}\n";
+            guessResult.text = "<color=red>X ↓";
+            HandleHP();
+            gm.PlayerGotItWrong();
+        }
+        else
+        {
             guesses.text +=$"<color=green>{userInputNumber}\n";
             guessResult.text = "<color=green>O";
             DeactivateTrack();
             gm.PlayerGotItRight();
             gm.CheckForWin();
-        }
-        //bigger
-        else if(numToGuess>userInputNumber){
-            guesses.text +=$"<color=red>{userInputNumber}\n";
-            guessResult.text = "<color=red>X ↑";
-            HandleHP();
-        }
-        //Smaller
-        else{
-            guesses.text +=$"<color=red>{userInputNumber}\n";
-            guessResult.text = "<color=red>X ↓";
-            HandleHP();
         }
     }
 

@@ -12,7 +12,8 @@ public class UIGame : MonoBehaviour
     [SerializeField]
     GameObject moderateScreen;
     [SerializeField]
-    GameObject DifficultScreen;
+    GameObject difficultScreen;
+
     [SerializeField]
     GameObject defeat;
     [SerializeField]
@@ -30,9 +31,12 @@ public class UIGame : MonoBehaviour
     [SerializeField] Animator genieMovement;
     [SerializeField] Animator genie;
     [SerializeField] Animator ball;
-    [SerializeField] AudioSource right;
+    [SerializeField] Animator foguito;
+    [SerializeField] AudioSource response;
+    [SerializeField] AudioSource levelUp;
+    [SerializeField] AudioClip wrong, right;
 
-
+    [SerializeField] GameObject tracks;
 
     public void LevelSelected(int level)
     {
@@ -55,22 +59,30 @@ public class UIGame : MonoBehaviour
                 moderateScreen.SetActive(true);
                 break;
             case 3:
-                DifficultScreen.SetActive(true);
+                difficultScreen.SetActive(true);
                 break;
         }
+
     }
 
 
-    public void PlayerWon() {
-        continueNextLevel.SetActive(true);
-        genieMovement.Play("GenitoHit");
-    }
-
-    public void PlayerGotAtLeastOneRight()
+    public void PlayerWon()
     {
-        genie.Play("TurnGreen");
-        ball.Play("GetGreenBall");
-        right.Play();
+        tracks.SetActive(false);
+        StartCoroutine(LevelUpYay());
+    }
+
+    IEnumerator LevelUpYay()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        genieMovement.Play("GenitoHit");
+        levelUp.Play();
+        
+        yield return new WaitForSeconds(2f);
+        continueNextLevel.SetActive(true);
+        tracks.SetActive(true);
+
     }
 
     public void PlayerLost(){
@@ -93,7 +105,8 @@ public class UIGame : MonoBehaviour
         pauseMenu.SetActive(false);
     }
 
-    public void PlayerContinued(){
+    public void PlayerContinued()
+    {
         continueNextLevel.SetActive(false);
     }
 
@@ -109,7 +122,7 @@ public class UIGame : MonoBehaviour
         bool onOff = false;
         easyScreen.SetActive(onOff);
         moderateScreen.SetActive(onOff);
-        DifficultScreen.SetActive(onOff);
+        difficultScreen.SetActive(onOff);
     }
 
     public void PlayerExit() {
@@ -125,5 +138,23 @@ public class UIGame : MonoBehaviour
     public void ClickButton()
     {
         buttonClick.Play();
+    }
+
+    public void PlayerFailedTurn()
+    {
+        response.clip = wrong;
+        genie.Play("TurnRed");
+        ball.Play("TurnRed");
+        foguito.Play("FoguitoShine");
+        response.Play();
+    }
+
+    public void PlayerGotAtLeastOneRight()
+    {
+        response.clip = right;
+        genie.Play("TurnGreen");
+        ball.Play("GetGreenBall");
+        foguito.Play("FoguitoOff" );
+        response.Play();
     }
 }   

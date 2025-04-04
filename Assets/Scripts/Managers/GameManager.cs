@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -44,6 +45,9 @@ public class GameManager : MonoBehaviour
     GameObject[] trackList;
     Button submitButton;
 
+    private int activeTracksCount = 0;
+    private static int misses = 0;
+
     void Start()
     {
         highScore = PlayerPrefs.GetInt("maxscore", 0);
@@ -79,7 +83,7 @@ public class GameManager : MonoBehaviour
         uiController.PlayerLost();
     }
 
-    public void CheckForWin(){
+    public void CheckForWin()   {
         foreach (GameObject track in trackList)
         {
             if (track.GetComponent<TrackController>().UserGuess.interactable == true)
@@ -92,7 +96,9 @@ public class GameManager : MonoBehaviour
         uiController.PlayerWon();
     }
 
-    public void PlayerContinued(){
+    public void PlayerContinued()
+    {
+        uiController.PlayerContinued();
         LevelUP();
         SaveInfo();
         EnableTrack();
@@ -192,6 +198,8 @@ public class GameManager : MonoBehaviour
         {
             track.GetComponent<TrackController>().InitializeValues();  // This will now use the updated `gm.HP` value
         }
+
+
     }
 
     public int SetHPS(int id){
@@ -205,7 +213,6 @@ public class GameManager : MonoBehaviour
             }
             else{
                 hpsList.Add(Int32.Parse(trackHP));
-                Debug.Log($"{hpsList.Count}");
                 trackHP = "";
             }
         }
@@ -220,6 +227,43 @@ public class GameManager : MonoBehaviour
 
     public void PlayerGotItRight()
     {
-        uiController.PlayerGotAtLeastOneRight();
+        activeTracksCount--;
+    }
+
+    public void PlayerGotItWrong()
+    {
+        misses++;
+    }
+
+
+    public void StartTurn()
+    {
+        misses = 0;
+        activeTracksCount = 0;        
+    }
+
+    public void EndTurn()
+    {
+        Debug.Log(misses);
+        
+        foreach (GameObject track in trackList)
+        {
+            TrackController trackController = track.GetComponent<TrackController>();
+            if (trackController.UserGuess.interactable) // If the track is still active
+            {
+                activeTracksCount++;
+            }
+        }
+        Debug.Log(activeTracksCount);
+
+        if (activeTracksCount == misses)
+        {
+            uiController.PlayerFailedTurn();
+        }
+        else
+        {
+            
+            uiController.PlayerGotAtLeastOneRight();
+        }
     }
 }
