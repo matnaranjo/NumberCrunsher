@@ -244,7 +244,6 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
-        Debug.Log(misses);
         
         foreach (GameObject track in trackList)
         {
@@ -254,7 +253,6 @@ public class GameManager : MonoBehaviour
                 activeTracksCount++;
             }
         }
-        Debug.Log(activeTracksCount);
 
         if (activeTracksCount == misses)
         {

@@ -56,6 +56,7 @@ public class TrackController : MonoBehaviour
 
     public void LevelUp(){
         hp += gm.HP;
+        Debug.Log(gm.HP + " GM");
         range += gm.NumberLimit;
         gm.CurrentNumberLimit = range;
         numToGuess = NumGenerator.GenerateNumber(range);
@@ -64,16 +65,20 @@ public class TrackController : MonoBehaviour
 
     public void HandleInput()
     {
-        int userInputNumber;
-        if (Int32.TryParse(userGuess.text, out userInputNumber))
+        if(userGuess.interactable == true)
         {
-            HandleText(userInputNumber);
-        }
+            hp--;
+            Debug.Log(hp + " Track");
+            int userInputNumber;
+            if (Int32.TryParse(userGuess.text, out userInputNumber))
+            {
+                HandleText(userInputNumber);
+            }
+        }       
     }
 
     private void HandleText(int userInputNumber){
         userGuess.text = "";
-
         if (numToGuess > userInputNumber)
         {
             guesses.text += $"<color=red>{userInputNumber}\n";
@@ -92,16 +97,18 @@ public class TrackController : MonoBehaviour
         {
             guesses.text +=$"<color=green>{userInputNumber}\n";
             guessResult.text = "<color=green>O";
+            hpText.text = hp.ToString();
             DeactivateTrack();
             gm.PlayerGotItRight();
             gm.CheckForWin();
         }
     }
 
+
     private void HandleHP(){
-        hp--;
         hpText.text = hp.ToString();
-        if (hp==0){
+        if (hp==0)
+        {
             DeactivateTrack();
             gm.CheckForDeath();
         }

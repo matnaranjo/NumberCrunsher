@@ -32,6 +32,7 @@ public class UIGame : MonoBehaviour
     [SerializeField] Animator genie;
     [SerializeField] Animator ball;
     [SerializeField] Animator foguito;
+    [SerializeField] Animator lightning;
     [SerializeField] AudioSource response;
     [SerializeField] AudioSource levelUp;
     [SerializeField] AudioClip wrong, right;
@@ -68,20 +69,25 @@ public class UIGame : MonoBehaviour
 
     public void PlayerWon()
     {
-        tracks.SetActive(false);
         StartCoroutine(LevelUpYay());
     }
 
     IEnumerator LevelUpYay()
     {
+        yield return new WaitForSeconds(0.5f);
+
+      //  tracks.SetActive(false);
+
         yield return new WaitForSeconds(1.5f);
 
+        lightning.Play("Lightning");
         genieMovement.Play("GenitoHit");
         levelUp.Play();
         
         yield return new WaitForSeconds(2f);
         continueNextLevel.SetActive(true);
-        tracks.SetActive(true);
+
+      // tracks.SetActive(true);
 
     }
 
