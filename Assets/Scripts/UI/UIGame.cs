@@ -26,6 +26,7 @@ public class UIGame : MonoBehaviour
     TextMeshProUGUI score;
     [SerializeField]
     TextMeshProUGUI maxScore;
+    [SerializeField] TextMeshProUGUI range;
     [SerializeField] AudioSource buttonClick;
     [SerializeField] Animator genieAndBall;
     [SerializeField] Animator genieMovement;
@@ -38,12 +39,13 @@ public class UIGame : MonoBehaviour
     [SerializeField] AudioClip wrong, right;
 
     [SerializeField] GameObject tracks;
-
+    [SerializeField] GameManager gm;
     public void LevelSelected(int level)
     {
         selectLevel.SetActive(false);
         genieAndBall.Play("GenioGetIn");
         StartCoroutine(LevelDelay(level));
+        range.text = $"(0 - {gm.CurrentNumberLimit})";
     }
 
     private IEnumerator LevelDelay(int level)
@@ -122,6 +124,12 @@ public class UIGame : MonoBehaviour
 
     public void SetMaxScoreText(int maxScore){
         this.maxScore.text = $"Max score: {maxScore}";
+    }
+
+
+    public void SetRangeText(int limit)
+    {
+        range.text = $"(0 - {limit})";
     }
 
     private void TurnOFOnGame(){

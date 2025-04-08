@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
         {
             track.GetComponent<TrackController>().LevelUp();
         }
+
+        uiController.SetRangeText(currentNumberLimit);
     }
 
     public void Reset(){
@@ -142,7 +144,7 @@ public class GameManager : MonoBehaviour
     {
         switch (hp)
         {
-            case 5:
+            case 20:
                 PlayerPrefs.SetInt("Dif", 1);
                 break;
             case 7:
@@ -174,6 +176,7 @@ public class GameManager : MonoBehaviour
         numberLimit = PlayerPrefs.GetInt("limitIncrease");
         currentNumberLimit = PlayerPrefs.GetInt("limit");
 
+
         // If PlayerPrefs doesn't have the correct value, set it based on difficulty
         int difficulty = PlayerPrefs.GetInt("Dif");
         switch (difficulty)
@@ -190,16 +193,17 @@ public class GameManager : MonoBehaviour
         }
 
         // Set the level UI and score
+        Debug.Log("A");
         uiController.LevelSelected(difficulty);
+        Debug.Log("B");
         uiController.SetScoreText(score);
+        uiController.SetRangeText(currentNumberLimit);
 
         // Pass the HP value to the tracks
         foreach (GameObject track in trackList)
         {
             track.GetComponent<TrackController>().InitializeValues();  // This will now use the updated `gm.HP` value
         }
-
-
     }
 
     public int SetHPS(int id){
