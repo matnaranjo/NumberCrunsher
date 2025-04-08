@@ -7473,9 +7473,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 563012954}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 1160935915}
+        m_TargetAssemblyTypeName: UIGame, Assembly-CSharp
+        m_MethodName: ClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7485,9 +7485,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1160935915}
-        m_TargetAssemblyTypeName: UIGame, Assembly-CSharp
-        m_MethodName: ClickButton
+      - m_Target: {fileID: 563012954}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

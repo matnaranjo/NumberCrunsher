@@ -40,6 +40,7 @@ public class UIGame : MonoBehaviour
 
     [SerializeField] GameObject tracks;
     [SerializeField] GameManager gm;
+
     public void LevelSelected(int level)
     {
         selectLevel.SetActive(false);

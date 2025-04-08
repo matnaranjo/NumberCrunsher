@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
     {
         switch (hp)
         {
-            case 20:
+            case 5:
                 PlayerPrefs.SetInt("Dif", 1);
                 break;
             case 7:
@@ -193,9 +193,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Set the level UI and score
-        Debug.Log("A");
         uiController.LevelSelected(difficulty);
-        Debug.Log("B");
         uiController.SetScoreText(score);
         uiController.SetRangeText(currentNumberLimit);
 
@@ -205,6 +203,8 @@ public class GameManager : MonoBehaviour
             track.GetComponent<TrackController>().InitializeValues();  // This will now use the updated `gm.HP` value
         }
     }
+
+
 
     public int SetHPS(int id){
         string hps = PlayerPrefs.GetString("hps");

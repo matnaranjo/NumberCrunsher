@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      relampago_0: 8333638220355893160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
