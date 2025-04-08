@@ -37,9 +37,10 @@ public class UIGame : MonoBehaviour
     [SerializeField] AudioSource response;
     [SerializeField] AudioSource levelUp;
     [SerializeField] AudioClip wrong, right;
-
+    [SerializeField] AudioSource backGroundMusic;
     [SerializeField] GameObject tracks;
     [SerializeField] GameManager gm;
+    [SerializeField] AudioSource gameOver;
 
     public void LevelSelected(int level)
     {
@@ -94,10 +95,15 @@ public class UIGame : MonoBehaviour
 
     }
 
-    public void PlayerLost(){
+    public void PlayerLost() 
+    {
+        response.mute = true;
+        backGroundMusic.Stop();
+        gameOver.Play();
         TurnOFOnGame();
 
         defeat.SetActive(true);
+
     }
 
     public void PlayerReset(){

@@ -2382,6 +2382,7 @@ MonoBehaviour:
   fadeOut: {fileID: 951134400}
   evilLaugh: {fileID: 2066486774}
   buttonClick: {fileID: 529798260}
+  ClickToContinue: {fileID: 1656874004}
 --- !u!4 &1985148817
 Transform:
   m_ObjectHideFlags: 0

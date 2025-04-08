@@ -16,7 +16,8 @@ public class UIIntro : MonoBehaviour
     [SerializeField] TMP_InputField name;
     [SerializeField] Animator introMusic, fadeOut;
     [SerializeField] AudioSource evilLaugh;
-    [SerializeField] AudioSource buttonClick; 
+    [SerializeField] AudioSource buttonClick;
+    [SerializeField] GameObject ClickToContinue;
 
     private void Update()
     {
@@ -76,6 +77,7 @@ public class UIIntro : MonoBehaviour
 
     public void TransitionIntoGame()
     {
+        clickToContinue.SetActive(false);
         introMusic.Play("MusicOff");
         fadeOut.Play("fadeout");
         evilLaugh.Play();
