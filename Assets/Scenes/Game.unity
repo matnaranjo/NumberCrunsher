@@ -2597,7 +2597,7 @@ RectTransform:
   m_GameObject: {fileID: 351472820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0919, y: 1.0919, z: 1.0919}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1857745189}
@@ -6392,6 +6392,7 @@ GameObject:
   - component: {fileID: 1047288380}
   - component: {fileID: 1047288379}
   - component: {fileID: 1047288382}
+  - component: {fileID: 1047288383}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -6470,6 +6471,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6beb62c6fb478b44cb6bd6cb4c023e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1047288383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047288378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ac895d294cf4844b35630634ab9df0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1067125881
@@ -8384,7 +8397,7 @@ RectTransform:
   m_GameObject: {fileID: 1511218978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0495, y: 1.0495, z: 1.0495}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1651566808}
@@ -9527,7 +9540,7 @@ RectTransform:
   m_GameObject: {fileID: 1651566807}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.4850554, y: 1.8944874, z: 4.4850554}
+  m_LocalScale: {x: 3.3750043, y: 1.4256017, z: 3.3750043}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511218979}
@@ -10070,7 +10083,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -10157,7 +10170,7 @@ RectTransform:
   m_GameObject: {fileID: 1864113017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.0566, y: 1.0566, z: 1.0566}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1429816365}
@@ -10313,7 +10326,7 @@ RectTransform:
   m_GameObject: {fileID: 1921075452}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.0155044, y: 7.0155044, z: 7.0155044}
+  m_LocalScale: {x: 6.8284907, y: 6.8284907, z: 6.8284907}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511218979}
