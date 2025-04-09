@@ -13,7 +13,7 @@ public class SelectName : MonoBehaviour
     void Start()
     {
         // DEBUGGING CODE
-        PlayerPrefs.DeleteAll();
+       //  PlayerPrefs.DeleteAll();
         // DEBUGGING CODE
 
         userName = PlayerPrefs.GetString("name", "");
